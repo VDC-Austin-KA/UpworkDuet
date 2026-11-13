@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Rename this file to rename the plug-in: the DLL, the Plugins folder and install.ps1 all follow it. -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>9.0</LangVersion>
+    <!-- Build for the client's version: dotnet build -c Release -p:NWYear=2026 (2020 to 2027). -->
+    <NWYear Condition="'$(NWYear)' == ''">2025</NWYear>
+    <NWPath>C:\Program Files\Autodesk\Navisworks Manage $(NWYear)\</NWPath>
+    <OutputPath>bin\$(Configuration)\$(NWYear)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <!-- That Navisworks version is installed here: compile against the real DLL. -->
+  <ItemGroup Condition="Exists('$(NWPath)Autodesk.Navisworks.Api.dll')">
+    <Reference Include="Autodesk.Navisworks.Api">
+      <HintPath>$(NWPath)Autodesk.Navisworks.Api.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- Not installed: compile-only copy of the API from NuGet. Never shipped, and untestable here. -->
+  <ItemGroup Condition="!Exists('$(NWPath)Autodesk.Navisworks.Api.dll')">
+    <PackageReference Include="Speckle.Navisworks.API" Version="$(NWYear).*" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>

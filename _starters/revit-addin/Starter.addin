@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- __NAME__ is filled in by install.ps1 from the DLL name.
+     AddInId must be unique per add-in: replace it per order with [guid]::NewGuid(). -->
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>__NAME__</Name>
+    <Text>__NAME__</Text>
+    <Assembly>__NAME__.dll</Assembly>
+    <FullClassName>__NAME__.Command</FullClassName>
+    <AddInId>6f0d5c7e-3b1a-4e52-9a44-0c7d2e8b1f90</AddInId>
+    <VendorId>ACLP</VendorId>
+    <VendorDescription>ACLP VDC</VendorDescription>
+  </AddIn>
+</RevitAddIns>
