@@ -1,0 +1,70 @@
+{
+  "title": "ATS Jobs Scraper & Monitor",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companies": {
+      "title": "Companies",
+      "type": "array",
+      "editor": "stringList",
+      "description": "One per line. Paste a careers-page URL (boards.greenhouse.io/stripe, jobs.lever.co/palantir, jobs.ashbyhq.com/ramp, jobs.smartrecruiters.com/BoschGroup, bunq.recruitee.com), write platform:name (ashby:ramp), or just the company name as it appears in its careers URL (notion) and the platform is detected for you.",
+      "prefill": ["https://boards.greenhouse.io/stripe", "jobs.ashbyhq.com/ramp", "notion"]
+    },
+    "titleKeywords": {
+      "title": "Job title must contain (any of)",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Keep only jobs whose title contains at least one of these words. Leave empty for all jobs."
+    },
+    "excludeTitleKeywords": {
+      "title": "Job title must not contain",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Drop jobs whose title contains any of these words (for example: intern, senior)."
+    },
+    "locationKeywords": {
+      "title": "Location must contain (any of)",
+      "type": "array",
+      "editor": "stringList",
+      "description": "Keep only jobs whose location contains one of these (for example: London, Germany, Remote)."
+    },
+    "remoteOnly": {
+      "title": "Remote jobs only",
+      "type": "boolean",
+      "description": "Keep only jobs marked remote by the employer.",
+      "default": false
+    },
+    "postedWithinDays": {
+      "title": "Posted within the last N days",
+      "type": "integer",
+      "description": "Keep only jobs published in the last N days. Leave empty for no date filter.",
+      "minimum": 1
+    },
+    "onlyNewJobs": {
+      "title": "Only jobs not returned by earlier runs",
+      "type": "boolean",
+      "description": "Turn this on and schedule the Actor to get a feed of newly posted jobs. Each job is returned once per monitor.",
+      "default": false
+    },
+    "monitorName": {
+      "title": "Monitor name",
+      "type": "string",
+      "editor": "textfield",
+      "description": "Used with the option above. Runs sharing a monitor name share their memory of returned jobs; use different names for separate feeds.",
+      "default": "default"
+    },
+    "includeDescription": {
+      "title": "Include full job description",
+      "type": "boolean",
+      "description": "Turn off for smaller, faster output.",
+      "default": true
+    },
+    "maxJobsPerCompany": {
+      "title": "Max jobs per company",
+      "type": "integer",
+      "description": "Cap the number of jobs returned for each company. Leave empty for no cap.",
+      "minimum": 1
+    }
+  },
+  "required": ["companies"]
+}

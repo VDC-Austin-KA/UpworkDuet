@@ -1,0 +1,11 @@
+{
+  "actorSpecification": 1,
+  "name": "ats-jobs-monitor",
+  "title": "ATS Jobs Scraper & Monitor — Greenhouse, Lever, Ashby +2",
+  "description": "Get every open job from company career pages on Greenhouse, Lever, Ashby, SmartRecruiters and Recruitee in one clean format. Paste careers URLs or company names, filter by title, location and date, or return only jobs posted since your last run.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "dockerfile": "../Dockerfile",
+  "storages": { "dataset": "./dataset_schema.json" }
+}
